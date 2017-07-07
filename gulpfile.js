@@ -69,7 +69,7 @@ gulp.task('lint', () => {
 })
 
 gulp.task('html', ['styles', 'scripts'], () => {
-    return gulp.src('src/*.html')
+    return gulp.src(['src/*.html', 'src/*.php'])
         .pipe($.useref({
             searchPath: ['.tmp', 'src', '.']
         }))
@@ -169,6 +169,33 @@ gulp.task('serve:dist', ['default'], () => {
             baseDir: ['dist']
         }
     });
+});
+
+gulp.task('php-serve:dist', ['default'], () => {
+  connect.server({
+      port: 9001,
+      base: 'dist',
+      open: false
+  });
+
+  var proxy = httpProxy.createProxyServer({});
+
+  browserSync.init({
+      notify: false,
+      port  : 9000,
+      server: {
+          baseDir   : ['dist'],
+          middleware: function (req, res, next) {
+              var url = req.url;
+
+              if (!url.match(/^\/(css|js)\//)) {
+                  proxy.web(req, res, { target: 'http://127.0.0.1:9001' });
+              } else {
+                  next();
+              }
+          }
+      }
+  });
 });
 
 gulp.task('build', ['lint', 'html']);

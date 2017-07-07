@@ -3,6 +3,8 @@ const gulpLoadPlugins = require('gulp-load-plugins');
 const del = require('del');
 const browserSync = require('browser-sync').create();
 const runSequence = require('run-sequence');
+const connect = require('gulp-connect-php');
+const httpProxy = require('http-proxy');
 
 const source = require('vinyl-source-stream');
 const browserify = require('browserify');
@@ -91,6 +93,48 @@ gulp.task('html', ['styles', 'scripts'], () => {
 
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
+
+gulp.task('php-serve', () => {
+    connect.server({
+        port: 9001,
+        base: 'src',
+        open: false
+    });
+
+    var proxy = httpProxy.createProxyServer({});
+
+    runSequence(['clean'], ['styles', 'scripts'], () => {
+      browserSync.init({
+          notify: false,
+          port  : 9000,
+          server: {
+              baseDir   : ['.tmp', 'src'],
+              routes    : {
+                  '/bower_components': 'bower_components'
+              },
+              middleware: function (req, res, next) {
+                  var url = req.url;
+
+                  if (!url.match(/^\/(css|fonts|bower_components)\//)) {
+                      proxy.web(req, res, { target: 'http://127.0.0.1:9001' });
+                  } else {
+                      next();
+                  }
+              }
+          }
+      });
+    });
+
+    // watch for changes
+    gulp.watch([
+        'src/*.html',
+        'src/js/**/*.js',
+        'src/*.php',
+    ]).on('change', reload);
+
+    gulp.watch('src/css/**/*.scss', ['styles']);
+    gulp.watch('src/js/**/*.js', ['scripts']);
+});
 
 gulp.task('serve', () => {
     runSequence(['clean'], ['styles', 'scripts'], () => {

@@ -1,6 +1,139 @@
-@import "lib.scss";
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
 
 .container{
-  width: rem(750);
-  margin: 0 auto;
+  padding: 0;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+
+  .jumbotron{
+    background: url('../images/background.jpg') no-repeat right top;
+    background-size: cover;
+    text-align: center;
+    margin-bottom: 0;
+    border-radius: 0;
+
+    @media (min-width: $screen-lg){
+      background: url('../images/background.jpg') no-repeat center center;
+      background-size: 100% 100%;
+      padding: 0;
+    }
+
+    &__logo{
+      text-align: center;
+      margin: 0 40px;
+
+      @media (min-width: $screen-lg){
+        padding: 40px 0;
+      }
+
+      img{
+        width: 100%;
+
+        @media (min-width: $screen-sm){
+          width: 50%;
+        }
+
+        @media (min-width: $screen-lg){
+          width: 20%;
+        }
+      }
+    }
+
+    &__header{
+
+      h1{
+        font-size: 28px;
+        font-weight: 300;
+        color: #4A484E;
+        margin: 30px 0;
+
+        @media (min-width: $screen-sm){
+            font-size: 30px;
+            margin: 40px 0;
+        }
+
+        @media (min-width: $screen-lg){
+          font-size: 42px;
+        }
+      }
+    }
+
+    &__description{
+      padding-bottom: 40px;
+
+      p{
+        color: #15325E;
+        font-weight: 500;
+        font-size: 14px;
+        margin: 10px 0;
+        line-height: 20px;
+
+        @media (min-width: $screen-lg){
+          line-height: 14px;
+        }
+      }
+
+    }
+  }
+
+  .email-form{
+    &__container{
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    &--input{
+      font-size: 18px;
+      width: 80%;
+      padding: 5px;
+      border: #15325E 1px solid;
+      outline: 0;
+
+      @media (min-width: $screen-sm){
+        width: 40%;
+      }
+
+      @media (min-width: $screen-lg){
+        width: 30%;
+      }
+    }
+    &--submit{
+      background: #15325E;
+      border:0 none;
+      cursor:pointer;
+      color: #FFF;
+      padding:10px;
+      position: relative;
+      top: -1px;
+    }
+
+    .alert{
+      margin: 0 auto;
+      width: 60%;
+    }
+  }
+
+  .social-links{
+    margin: 20px 0;
+
+    &__container{
+      text-align: center;
+      margin: 0;
+      padding: 0;
+
+    }
+
+    &__link{
+      display: inline-block;
+
+      $dimensions: 40px;
+
+      img{
+        width: $dimensions;
+        height: $dimensions;
+      }
+    }
+  }
 }

@@ -3,7 +3,7 @@ var Homepage = (function( $ ){
       inputField = ".email-form--input",
       alertDisplay = ".alert",
       success = { class: "alert-success", message: '<p>Thank you. We will keep you updated</p>' },
-      error = { class: "alert-danger", message: '<p>There was a problem sending your email</p>' },
+      connError = { class: "alert-danger", message: '<p>There was a problem sending your email</p>' },
       emptyError = { class: "alert-danger", message: '<p>Please enter a valid email address</p>' };
 
   var init = function( ){
@@ -48,10 +48,10 @@ var Homepage = (function( $ ){
 
   var displayResponse = function( error ){
     if ( error ){
-      $( alertDisplay ).html( error.message ).removeClass( success.class ).addClass( error.class ).show();
+      $( alertDisplay ).html( connError.message ).removeClass( emptyError.class ).removeClass( success.class ).addClass( connError.class ).show();
     }
     else {
-      $( alertDisplay ).html( success.message ).removeClass( error.class ).addClass( success.class ).show();
+      $( alertDisplay ).html( success.message ).removeClass( emptyError.class ).removeClass( error.class ).addClass( success.class ).show();
     }
   };
 

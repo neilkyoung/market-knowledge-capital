@@ -23,21 +23,25 @@
   <body>
     <div class="container">
       <div class="jumbotron">
-        <div class="jumbotron__logo">
-          <img src="images/logo.png" alt="" />
-        </div>
-        <div class="jumbotron__header">
-          <h1>
-            WE'RE COMING SOON
-          </h1>
-        </div>
-        <div class="jumbotron__description">
-          <p>
-            We are currently working on our new website.
-          </p>
-          <p>
-            We'll be here soon. Enter you email below to stay updated.
-          </p>
+        <div class="jumbotron__placement">
+          <div class="jumbotron__container">
+            <div class="jumbotron__logo">
+              <img src="images/logo.png" alt="" />
+            </div>
+            <div class="jumbotron__header">
+              <h1>
+                WE'RE COMING SOON
+              </h1>
+            </div>
+            <div class="jumbotron__description">
+              <p>
+                We are currently working on our new website.
+              </p>
+              <p>
+                We'll be here soon. Enter you email below to stay updated.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
       <div class="email-form col-xs-12">
@@ -52,13 +56,13 @@
       <div class="social-links col-xs-12">
         <ul class="social-links__container">
           <li class="social-links__link">
-            <img src="images/social/facebook.png" />
+            <a href="https://www.facebook.com/Market-Knowledge-Capital-1874026786253887/" target="_blank"><img src="images/social/facebook.png" /></a>
           </li>
           <li class="social-links__link">
-            <img src="images/social/twitter.png" />
+            <a href="https://twitter.com/M_K_Capital" target="_blank"><img src="images/social/twitter.png" /></a>
           </li>
           <li class="social-links__link">
-            <img src="images/social/instagram.png" />
+            <a href="http://instagram.com/marketknowledge_capital" target="_blank"><img src="images/social/instagram.png" /></a>
           </li>
 
         </ul>
